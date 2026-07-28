@@ -28,7 +28,11 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "pack:win": "pnpm build && electron-builder --win",
+    "pack:win:installer": "pnpm build && electron-builder --win -c.win.target=nsis",
+    "pack:win:portable": "pnpm build && electron-builder --win -c.win.target=zip",
     "pack:mac": "pnpm build && electron-builder --mac",
+    "pack:mac:installer": "pnpm build && electron-builder --mac -c.mac.target=dmg",
+    "pack:mac:portable": "pnpm build && electron-builder --mac -c.mac.target=zip",
     "pack:linux": "pnpm build && electron-builder --linux"
   },
   "dependencies": {

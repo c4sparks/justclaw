@@ -30,15 +30,19 @@ files:
 
 win:
   executableName: just-claw
+  artifactName: just-claw-${version}-win-${arch}.${ext}
   target:
     - target: nsis
+      arch:
+        - x64
+    - target: zip
       arch:
         - x64
 
 compression: maximum
 
 nsis:
-  artifactName: just-claw-setup.${ext}
+  artifactName: just-claw-setup-${version}.${ext}
   oneClick: false
   allowToChangeInstallationDirectory: true
   perMachine: false
@@ -49,17 +53,21 @@ mac:
       arch:
         - x64
         - arm64
-  artifactName: just-claw.${ext}
+    - target: zip
+      arch:
+        - x64
+        - arm64
+  artifactName: just-claw-${version}-${arch}.${ext}
 
 dmg:
-  artifactName: just-claw.${ext}
+  artifactName: just-claw-${version}.${ext}
 
 linux:
   target:
     - target: AppImage
       arch:
         - x64
-  artifactName: just-claw.${ext}
+  artifactName: just-claw-${version}.${ext}
 
 # Strip unused Chromium locale files (saves ~40MB)
 afterPack: ./scripts/clean-locales.cjs
