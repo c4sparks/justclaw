@@ -114,8 +114,8 @@ async function runInstall(): Promise<void> {
       updateStep('ubuntu', 'done')
       const envAfter = await window.electronAPI.env.check()
       wizard.setEnvResult(envAfter)
-      steps.value[0].version = envAfter?.wslVersion ? `${envAfter.wslVersion}` : ''
-      steps.value[1].version = envAfter?.distroVersion ? `Ubuntu ${envAfter.distroVersion}` : 'Ubuntu'
+      steps.value[1].version = envAfter?.wslVersion ? `${envAfter.wslVersion}` : ''
+      steps.value[2].version = envAfter?.distroVersion ? `Ubuntu ${envAfter.distroVersion}` : 'Ubuntu'
     }
 
     if (needsNode.value) {
@@ -125,6 +125,7 @@ async function runInstall(): Promise<void> {
       updateStep('node', 'done')
       const envAfter = await window.electronAPI.env.check()
       wizard.setEnvResult(envAfter)
+      steps.value[3].version = envAfter?.nodeVersion ? `v${envAfter.nodeVersion}` : ''
     }
 
     if (needsOc.value) {
@@ -134,6 +135,7 @@ async function runInstall(): Promise<void> {
       updateStep('openclaw', 'done')
       const envAfter = await window.electronAPI.env.check()
       wizard.setEnvResult(envAfter)
+      steps.value[4].version = envAfter?.openclawVersion ? `v${envAfter.openclawVersion}` : ''
     }
 
     phase.value = 'done'

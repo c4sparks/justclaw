@@ -7,7 +7,6 @@ directories:
   output: release
 
 icon: build/icon.png
-# icns: build/icon.icns  # macOS: uncomment and generate icon.icns if needed
 
 files:
   - '!**/.vscode/*'
@@ -15,6 +14,8 @@ files:
   - '!electron.vite.config.{ts,mjs,cts}'
   - '!{.eslintignore,.eslintrc.mjs,.prettierignore,.prettierrc.yaml}'
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+  - '!**/*.map'
+  - '!**/*.md'
 
 win:
   executableName: just-claw
@@ -48,6 +49,9 @@ linux:
       arch:
         - x64
   artifactName: just-claw.${ext}
+
+# Strip unused Chromium locale files (saves ~40MB)
+afterPack: ./scripts/clean-locales.cjs
 
 publish:
   provider: github
