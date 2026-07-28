@@ -8,6 +8,10 @@ directories:
 
 icon: build/icon.png
 
+electronDist: ./node_modules/electron/dist
+
+asar: true
+
 files:
   - '!**/.vscode/*'
   - '!src/*'
@@ -16,6 +20,13 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
   - '!**/*.map'
   - '!**/*.md'
+  # Strip dev/test artifacts from node_modules (saves ~5-8MB)
+  - '!**/node_modules/*/{test,tests,docs,example,examples,coverage,__tests__}/**'
+  - '!**/node_modules/*/{CHANGELOG*,changelog*,AUTHORS*,CONTRIBUTORS*}'
+  - '!**/node_modules/*/{Makefile,README*,readme*}'
+  # Strip TypeScript sources from node_modules
+  - '!**/node_modules/**/*.ts'
+  - '!**/node_modules/**/*.tsbuildinfo'
 
 win:
   executableName: just-claw
