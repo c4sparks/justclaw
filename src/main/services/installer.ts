@@ -63,9 +63,10 @@ function downloadFile(url: string, dest: string, maxRedir = 5): Promise<void> {
 // ──────────────────────────────────────────────
 // macOS Node.js installer (opens .pkg)
 // ──────────────────────────────────────────────
-export async function installNodeMac(onLog: ProgressFn): Promise<void> {
+export async function installNodeMac(onLog: ProgressFn, mirror?: string): Promise<void> {
   const { DEPENDENCIES } = await import('./dependencies')
-  const url = DEPENDENCIES.nodejs.macUrl(DEPENDENCIES.nodejs.minVersion)
+  const base = mirror || DEPENDENCIES.nodejs.mirrors.OFFICIAL
+  const url = DEPENDENCIES.nodejs.macUrl(base, DEPENDENCIES.nodejs.minVersion)
   const dest = join(tmpdir(), 'node-installer.pkg')
   onLog('Downloading Node.js installer...')
   await downloadFile(url, dest)
@@ -172,13 +173,13 @@ function ts(msg: string): string {
   return `${date} ${time} ${msg}`
 }
 
-export async function installNode(win: BrowserWindow): Promise<void> {
+export async function installNode(win: BrowserWindow, mirror?: string): Promise<void> {
   const log = (msg: string) => { try { win.webContents.send('install:progress', ts(msg)) } catch { /* ignore */ } }
   log('Starting Node.js installation...')
   if (platform() === 'win32') {
     await installNodeWsl(log)
   } else {
-    await installNodeMac(log)
+    await installNodeMac(log, mirror)
   }
   log('Node.js installation completed')
 }

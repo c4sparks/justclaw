@@ -34,7 +34,7 @@ interface ElectronAPI {
     }>
   }
   install: {
-    node(): Promise<{ success: boolean; error?: string }>
+    node(mirror?: string): Promise<{ success: boolean; error?: string }>
     openclaw(registry?: string): Promise<{ success: boolean; error?: string }>
     onProgress(cb: (msg: string) => void): () => void
     onError(cb: (msg: string) => void): () => void

@@ -32,7 +32,9 @@ const messages = {
         retry: '重试', installing: '正在安装，请稍候...',
         registryTitle: 'npm 镜像源（安装失败时可切换）',
         registryOfficial: '官方源', registryAli: '阿里镜像', registryCustom: '自定义',
-        registryPlaceholder: 'https://registry.example.com/'
+        registryPlaceholder: 'https://registry.example.com/',
+        nodeMirror: 'Node.js 镜像源',
+        nodeMirrorOfficial: '官方源', nodeMirrorAli: '阿里云'
       },
       config: {
         title: '选择 AI 厂商', desc: '选择 AI 厂商、模型并输入 API 密钥',
@@ -41,7 +43,7 @@ const messages = {
         modelSelect: '选择模型', updateModels: '更新', updateFail: '获取失败', updateNetworkError: '网络异常',
         apiKey: 'API 密钥', apiKeyPlaceholder: '在此粘贴你的 API 密钥',
         keyFormatHint: '密钥格式不正确',
-        save: '保存并启动', saving: '保存中...',
+        save: '保存', saving: '保存中...',
         getKey: '获取密钥', downloadOllama: '下载 Ollama',
         noKeyNeeded: '无需 API 密钥',
         oauthLogin: '使用 OpenAI 账号登录', loggingIn: '登录中...',
@@ -139,7 +141,9 @@ const messages = {
         retry: 'Retry', installing: 'Installing, please wait...',
         registryTitle: 'npm Registry (switch mirror on failure)',
         registryOfficial: 'Official', registryAli: 'Alibaba Mirror', registryCustom: 'Custom',
-        registryPlaceholder: 'https://registry.example.com/'
+        registryPlaceholder: 'https://registry.example.com/',
+        nodeMirror: 'Node.js Mirror',
+        nodeMirrorOfficial: 'Official', nodeMirrorAli: 'Alibaba'
       },
       config: {
         title: 'Select AI Provider', desc: 'Choose provider, model and enter API key',
@@ -148,7 +152,7 @@ const messages = {
         modelSelect: 'Select Model', updateModels: 'Update', updateFail: 'Failed', updateNetworkError: 'Network error',
         apiKey: 'API Key', apiKeyPlaceholder: 'Paste your API key',
         keyFormatHint: 'Invalid key format',
-        save: 'Save & Launch', saving: 'Saving...',
+        save: 'Save', saving: 'Saving...',
         getKey: 'Get API Key', downloadOllama: 'Download Ollama',
         noKeyNeeded: 'No API key needed',
         oauthLogin: 'Sign in with OpenAI', loggingIn: 'Signing in...',

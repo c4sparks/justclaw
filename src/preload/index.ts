@@ -81,7 +81,7 @@ const electronAPI = {
   },
 
   install: {
-    node: (): Promise<{ success: boolean; error?: string }> => ipcRenderer.invoke(IPC.INSTALL_NODE),
+    node: (mirror?: string): Promise<{ success: boolean; error?: string }> => ipcRenderer.invoke(IPC.INSTALL_NODE, mirror),
     openclaw: (registry?: string): Promise<{ success: boolean; error?: string }> => ipcRenderer.invoke(IPC.INSTALL_OPENCLAW, registry),
     onProgress: (cb: (msg: string) => void): (() => void) => {
       const h = (_: unknown, msg: string): void => cb(msg)

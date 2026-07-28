@@ -7,8 +7,10 @@ import { ref, reactive, onBeforeUnmount, computed } from 'vue'
 const props = withDefaults(defineProps<{
   show: boolean
   size?: 'sm' | 'md' | 'lg'
+  closeOnBackdrop?: boolean
 }>(), {
-  size: 'md'
+  size: 'md',
+  closeOnBackdrop: true
 })
 
 const emit = defineEmits<{
@@ -66,7 +68,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="show" class="fixed inset-0 z-50 bg-black/30" @click.self="emit('close')">
+  <div v-if="show" class="fixed inset-0 z-50 bg-black/30" @click.self="closeOnBackdrop && emit('close')">
     <div ref="modalRef"
       class="absolute w-full rounded-2xl bg-[#0a0d14]/95 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden flex flex-col"
       :class="[sizeClass, { 'cursor-grabbing select-none': dragging }]"

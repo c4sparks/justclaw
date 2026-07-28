@@ -5,8 +5,13 @@
 export const DEPENDENCIES = {
   nodejs: {
     minVersion: '22.16.0',
-    // macOS: official installer
-    macUrl: (v: string) => `https://nodejs.org/dist/v${v}/node-v${v}.pkg`,
+    // Built-in mirror presets
+    mirrors: {
+      NPMMIRROR: 'https://npmmirror.com/mirrors/node',
+      OFFICIAL: 'https://nodejs.org/dist',
+    } as const,
+    // macOS: build .pkg URL from any mirror base
+    macUrl: (mirror: string, v: string) => `${mirror.replace(/\/+$/, '')}/v${v}/node-v${v}.pkg`,
     // WSL: NodeSource setup script (installs latest of the major)
     wslSetup: (v: string) => {
       const major = v.split('.')[0]

@@ -120,7 +120,7 @@ async function runInstall(): Promise<void> {
 
     if (needsNode.value) {
       updateStep('node', 'doing')
-      const r = await window.electronAPI.install.node()
+      const r = await window.electronAPI.install.node(settings.nodeMirror)
       if (!r.success) { updateStep('node', 'error'); phase.value = 'failed'; return }
       updateStep('node', 'done')
       const envAfter = await window.electronAPI.env.check()

@@ -155,10 +155,10 @@ export const registerIpcHandlers = (getWin: () => BrowserWindow | null): void =>
   })
 
   // ── Install ──
-  ipcMain.handle(IPC.INSTALL_NODE, async () => {
-    log('install:node')
+  ipcMain.handle(IPC.INSTALL_NODE, async (_e, mirror?: string) => {
+    log(`install:node mirror=${mirror ?? 'default'}`)
     try {
-      await installNode(win())
+      await installNode(win(), mirror)
       log('install:node done')
       return { success: true }
     } catch (err) {

@@ -21,15 +21,29 @@ export const useSettingsStore = defineStore('settings', () => {
     npmRegistry.value === OFFICIAL ? undefined : npmRegistry.value
   )
 
+  // ── Node.js mirror ──
+  const NODE_MIRROR_NPMMIRROR = 'https://npmmirror.com/mirrors/node'
+  const NODE_MIRROR_OFFICIAL = 'https://nodejs.org/dist'
+
+  const nodeMirror = ref(NODE_MIRROR_NPMMIRROR)
+
+  function setNodeMirror(url: string): void {
+    nodeMirror.value = url
+  }
+
   return {
     // State
     npmRegistry,
+    nodeMirror,
     // Getters
     npmRegistryArg,
     // Constants
     ALIBABA_MIRROR,
     OFFICIAL,
+    NODE_MIRROR_NPMMIRROR,
+    NODE_MIRROR_OFFICIAL,
     // Actions
-    setNpmRegistry
+    setNpmRegistry,
+    setNodeMirror
   }
 })
